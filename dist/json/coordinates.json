@@ -1,0 +1,23 @@
+{
+    "coodinatesArray": [
+        {
+          "name": "Mundaka",
+          "url": "https://es.wikipedia.org/wiki/Mundaca",
+          "lat": "43.4092831",
+          "lng": "-2.7036664"
+        },
+        {
+          "name": "Zarauz",
+          "url": "https://es.wikipedia.org/wiki/Zarauz",
+          "lat": "43.2844400",
+          "lng": "-2.1699200"
+        },
+        {
+          "name": "Barceloneta",
+          "url": "https://es.wikipedia.org/wiki/Barcelona",
+          "lat": "41.3887901",
+          "lng": "2.1589899"
+        }
+    ]
+  }
+  

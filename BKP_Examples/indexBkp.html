@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Marker Animation</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+   
+    <script>
+      
+      var startMarker = new ol.Feature({
+        type: 'icon',
+        geometry: new ol.geom.Point(40.416775, -3.703790)
+      });
+      var endMarker = new ol.Feature({
+        type: 'icon',
+        geometry: new ol.geom.Point(40.416775, -4.703790)
+      });
+
+      var styles = {
+        'icon': new ol.style.Style({
+          image: new ol.style.Icon({
+            anchor: [0.5, 1],
+            src: 'https://openlayers.org/en/v4.6.5/examples/data/icon.png'
+          })
+        }),
+      };
+
+      var vectorLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [startMarker, endMarker]
+        }),
+        style: function(feature) {
+          // hide geoMarker if animation is active
+          if (animating && feature.get('type') === 'geoMarker') {
+            return null;
+          }
+          return styles[feature.get('type')];
+        }
+      });
+
+      var center = [40.416775, -3.703790];
+      var map = new ol.Map({
+        target: document.getElementById('map'),
+        loadTilesWhileAnimating: true,
+        view: new ol.View({
+          center: center,
+          zoom: 4,
+          minZoom: 2,
+          maxZoom: 19
+        }),
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.BingMaps({
+              imagerySet: 'AerialWithLabels',
+              key: 'Your Bing Maps Key from http://www.bingmapsportal.com/ here'
+            })
+          }),
+          vectorLayer
+        ]
+      });
+
+      
+    </script>
+  </body>
+</html>
